@@ -32,7 +32,7 @@ public class Ejercicio2 {
         }
     }
 
-    // Método Ejercicio 2
+    // Metodo Ejercicio 2
     public static String[] listarDirectorio(String path) {
         File currentDir = new File(path);
         String[] files = {"La Ruta no es un Directorio"};
