@@ -5,10 +5,10 @@ import java.io.File;
 public class Ejercicio7 {
     public static void main(String[] args) {
         /*
-        7. Crea un método eliminarDirectorio que reciba una ruta y elimine el directorio
+        7. Crea un metodo eliminarDirectorio que reciba una ruta y elimine el directorio
         indicado por ella.
         ¿Elimina directorios con contenido? ¿cómo se puede solucionar?
-        Modifica el método para que elimine directorios que contengan solo archivos o
+        Modifica el metodo para que elimine directorios que contengan solo archivos o
         estén vacíos e indique que no puede hacerlo si contienen otros directorios.
          */
 

@@ -5,11 +5,11 @@ import java.io.File;
 public class Ejercicio6 {
     public static void main(String[] args) {
         /*
-        6. Crea un método que se llame borrarArchivo que reciba un path absoluto y
+        6. Crea un metodo que se llame borrarArchivo que reciba un path absoluto y
         elimine el archivo indicado.
         Pruébalo con el archivo del ejercicio anterior.
         En la clase File hay métodos para cambiar los atributos del archivo. Prueba a
-        modificar el método haciendo el archivo de solo lectura antes de eliminarlo. ¿Qué
+        modificar el metodo haciendo el archivo de solo lectura antes de eliminarlo. ¿Qué
         sucede? ¿por qué?
          */
 

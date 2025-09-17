@@ -6,7 +6,7 @@ public class Ejercicio5 {
     public static void main(String[] args) {
         /*
 
-        5. Crea un método renombrarArchivo que coja un archivo cuyo path absoluto se
+        5. Crea un metodo renombrarArchivo que coja un archivo cuyo path absoluto se
         le pase como argumento y lo renombre añadiendo delante DAM2.
         Pruébalo con el archivo creado en el ejercicio anterior.
         El archivo antiguo, ¿desaparece?

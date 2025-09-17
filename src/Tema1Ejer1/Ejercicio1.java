@@ -5,9 +5,9 @@ import java.io.File;
 public class Ejercicio1 {
     public static void main(String[] args) {
         /*
-        1. Crea un método listarDirectorio() que devuelva una array con el listado del
+        1. Crea un metodo listarDirectorio() que devuelva una array con el listado del
         contenido (archivos y carpetas) del directorio actual.
-        ¿Este método debería ser dinámico o estático? ¿por qué?
+        ¿Este metodo debería ser dinámico o estático? ¿por qué?
 
 
          */

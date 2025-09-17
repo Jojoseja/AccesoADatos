@@ -5,8 +5,8 @@ import java.io.File;
 public class Ejercicio8 {
     public static void main(String[] args) {
         /*
-        8. Crea una clase que herede de java.io.File y le añada un método que se llame
-        showInfo(). Este método devolverá un String con la siguiente información del
+        8. Crea una clase que herede de java.io.File y le añada un metodo que se llame
+        showInfo(). Este metodo devolverá un String con la siguiente información del
         fichero:
         Nombre.
         Ruta.

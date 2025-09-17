@@ -5,7 +5,7 @@ import java.io.File;
 public class Ejercicio3 {
     public static void main(String[] args) {
         /*
-        3. Crea un método existeFichero(String directorio, String fichero) que
+        3. Crea un metodo existeFichero(String directorio, String fichero) que
         compruebe si existe dicho fichero en el directorio indicado.
          */
         String rutaDir = "../AccesoADatos/src/Tema1Ejer1";

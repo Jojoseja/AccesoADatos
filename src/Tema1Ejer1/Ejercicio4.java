@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Ejercicio4 {
     /*
-    4. Crea un método generarArchivo que a partir de una ruta que se le pase como
+    4. Crea un metodo generarArchivo que a partir de una ruta que se le pase como
     argumento, cree un archivo txt con nombre TunombreTuapellido en la ruta en la
     que se le ha proporcionado. Presta atención a los posibles errores que puedan
     darse.

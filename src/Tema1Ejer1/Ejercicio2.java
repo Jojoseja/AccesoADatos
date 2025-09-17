@@ -16,7 +16,7 @@ public class Ejercicio2 {
         // ruta del directorio actual
 
         /*
-        2. Crea un método listarDirectorio(String directorio) que devuelva una
+        2. Crea un metodo listarDirectorio(String directorio) que devuelva una
         array con el listado del contenido del directorio indicado como argumento siempre
         y cuando este sea un directorio y no un archivo. Pruébalo pasándole al menos
         una ruta absoluta y una relativa.
