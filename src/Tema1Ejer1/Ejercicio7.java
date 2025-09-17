@@ -12,10 +12,39 @@ public class Ejercicio7 {
         estén vacíos e indique que no puede hacerlo si contienen otros directorios.
          */
 
+        /*
+        No lo elimina si tiene contenido. Para eliminar la carpeta hay que eliminar el contenido de forma recursiva
+         */
+
         String rutaDirectorio =  "../AccesoADatos/src/Tema1Ejer1/CarpetaPrueba";
         eliminarDirectorio2(rutaDirectorio);
 
     }
+    //Metodo para eliminar directorio con archivos/carpetas vacias
+    public static void eliminarDirectorio(String path){
+        File dir = new File(path);
+        if (dir.isDirectory()) {
+            File[] files = dir.listFiles();
+            boolean soloArchivo = true;
+
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        soloArchivo = false;
+                    }
+                }
+                if (!soloArchivo){
+                    dir.delete();
+                }
+
+            } else {
+                dir.delete();
+            }
+        } else {
+            System.out.println("No se encontró el directorio");
+        }
+    }
+
 
     //No funciona si el directorio no está vacío
     public static void eliminarDirectorio1(String path){

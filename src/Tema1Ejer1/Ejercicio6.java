@@ -13,6 +13,8 @@ public class Ejercicio6 {
         sucede? ¿por qué?
          */
 
+        //Se puede eliminar puesto que el borrado depende de los permisos de la carpeta, no del archivo
+
     String rutaArchivo = "/home/jojo/Projects/AccesoADatos/src/Tema1Ejer1/CarpetaPruebaCopia/Otra/texto2.txt";
 
     cambiarPrivilegios(rutaArchivo);

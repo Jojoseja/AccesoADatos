@@ -10,6 +10,7 @@ public class Ejercicio4 {
     darse.
     ¿Qué pasa si la ruta no existe? ¿puedes solucionarlo?
      */
+    //Si la ruta no existe no se puede crear el archivo.
 
     public static void main(String[] args) {
         String rutaRel = "../AccesoADatos/src/Tema1Ejer1";
@@ -19,7 +20,7 @@ public class Ejercicio4 {
         File directorio = new File(ruta);
         String nombreFichero = "JoseJavier.txt";
         if (directorio.isDirectory()) {
-           File rutaArchivo = new File(directorio + "/" + nombreFichero);
+           File rutaArchivo = new File(directorio + File.separator + nombreFichero);
            try {
                if(rutaArchivo.createNewFile()){
                    System.out.println("Archivo creado");

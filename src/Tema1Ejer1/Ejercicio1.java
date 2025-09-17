@@ -9,7 +9,6 @@ public class Ejercicio1 {
         contenido (archivos y carpetas) del directorio actual.
         ¿Este método debería ser dinámico o estático? ¿por qué?
 
-        Este método debería ser estático ya que se tiene que acceder
 
          */
         String[] archivos = listarDirectorio();
@@ -19,6 +18,8 @@ public class Ejercicio1 {
         }
 
     }
+
+    //Metodo que devuelve un array con el nombre del contenido
     public static String[] listarDirectorio(){
         String path = System.getProperty("user.dir");
         File dir = new File(path);

@@ -8,9 +8,8 @@ public class Ejercicio2 {
         //Usando System.getProperty para el directorio actual
 
         String relative = "../AccesoADatos";
-        String rel= "./";
 
-        String rutaDirectorioActual = rutaRepo + "/Tema1Ejer1";
+        String rutaDirectorioActual = rutaRepo + "/Tema1Ejer1/EjAux.java";
         //Especificando la carpeta "Tema1"
 
         File directorioActual = new File(rutaDirectorioActual);
@@ -23,7 +22,11 @@ public class Ejercicio2 {
         una ruta absoluta y una relativa.
         ¿Qué devolvería en caso de que la ruta que nos proporcionan no se correspondiera con un directorio?
          */
-        String[] archivos = listarDirectorio(relative);
+
+        //El array estará vacío
+
+
+        String[] archivos = listarDirectorio(rutaDirectorioActual);
         for (String archivo : archivos) {
             System.out.println(archivo);
         }

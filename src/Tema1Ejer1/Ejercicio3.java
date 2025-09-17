@@ -17,8 +17,10 @@ public class Ejercicio3 {
 
     public static boolean existeFichero(String directorio, String fichero) {
         boolean existe = false;
+        //Rutas
         File rutaDirectorio = new File(directorio);
-        File rutaFichero = new File(directorio + "/" + fichero);
+        File rutaFichero = new File(directorio + File.separator + fichero);
+
         if (rutaDirectorio.exists() && rutaDirectorio.isDirectory()) {
             System.out.println("Existe el directorio");
             if (rutaFichero.exists()) {

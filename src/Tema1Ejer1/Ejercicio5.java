@@ -23,6 +23,7 @@ public class Ejercicio5 {
         File fichero = new File(path);
         if (fichero.getAbsolutePath().equals(path)) {
             System.out.println("Renombrando Archivo");
+
             String nombreFichero = fichero.getName();
             String rutaDirectorio = fichero.getParent();
             String DAM2 = "DAM2";
