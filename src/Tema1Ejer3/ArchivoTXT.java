@@ -38,4 +38,18 @@ public class ArchivoTXT {
         }
     }
 
+
+    //Path: Ruta del archivo en el que escribir le resultado
+    public void codifica(String path) {
+        File outputFile = new File(path);
+        try {
+            if (outputFile.createNewFile()) {
+                System.out.println("El archivo ha sido creado");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        }
+
+
 }
