@@ -16,7 +16,6 @@ public class ArchivoTXT {
             System.out.println("El archivo no existe");
         }
     }
-
     public void aVerso(){
         try (BufferedReader br = new BufferedReader(new FileReader(path));){
             String line;
@@ -48,8 +47,33 @@ public class ArchivoTXT {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        } finally {
+            try (BufferedReader br = new BufferedReader(new FileReader(this.archivo))) {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    bw.write(modificarLinea(line));
+                    bw.newLine();
+                }
+                bw.close();
+
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 
+    }
+
+    public String modificarLinea(String linea) {
+        String[] vocales = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"};
+        for (String vocal : vocales) {
+            if (linea.contains(vocal)) {
+                linea = linea.replace(vocal, "");
+            }
+        }
+        return linea;
+    }
 }
