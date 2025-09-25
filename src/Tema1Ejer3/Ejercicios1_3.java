@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Ejercicios1_3 {
     public static void main(String[] args) {
@@ -43,6 +44,9 @@ public class Ejercicios1_3 {
 
         //Ejercicio 8 y 9
         //archivo.cuentaVocales();
+
+        //Ejercicio 10
+        //archivo.frecuenciaLetras();
     }
 
     public static class ArchivoTXT{
@@ -253,7 +257,7 @@ public class Ejercicios1_3 {
 
         //Ejercicio 6
         public int cuentaLineas(){
-            return this.aVerso().split("\n").length-1;
+            return this.aVerso().split("\n").length;
         }
 
         //Ejercicio 7
@@ -316,11 +320,26 @@ public class Ejercicios1_3 {
 
         //Ejercicio 10
         public void frecuenciaLetras(){
+            HashMap<String, Integer> hm = new HashMap();
             try (BufferedReader br = new BufferedReader(new FileReader(this.file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    for (int i = 0; i < line.length(); i++) {
+                        String ch = String.valueOf(line.charAt(i)).toUpperCase();
+                        if (ch.matches("[A-Za-z]")) {
+                            if (hm.containsKey(ch)) {
+                                hm.compute(ch, (k, v) -> v + 1);
+                            } else {
+                                hm.put(ch, 0);
+                            }
 
+                        }
+                    }
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+            System.out.println(hm.toString());
         }
     }
 }
