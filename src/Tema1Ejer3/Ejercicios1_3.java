@@ -302,15 +302,11 @@ public class Ejercicios1_3 {
                     }
                 }
 
-
                 try (BufferedWriter bw = Files.newBufferedWriter(Path.of(this.file.getParentFile().getPath(), "numVocales.txt"))) {
                     bw.write("A: " + contA + " E: " + contE + " I: " + contI + " O: " + contO + " U: " + contU);
                     bw.flush();
                     bw.close();
                 }
-
-
-
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -326,13 +322,12 @@ public class Ejercicios1_3 {
                 while ((line = br.readLine()) != null) {
                     for (int i = 0; i < line.length(); i++) {
                         String ch = String.valueOf(line.charAt(i)).toUpperCase();
-                        if (ch.matches("[A-Za-z]")) {
+                        if (ch.matches("[A-Z]")) {
                             if (hm.containsKey(ch)) {
                                 hm.compute(ch, (k, v) -> v + 1);
                             } else {
                                 hm.put(ch, 0);
                             }
-
                         }
                     }
                 }
