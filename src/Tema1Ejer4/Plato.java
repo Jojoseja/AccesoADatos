@@ -143,8 +143,7 @@ public class Plato implements Externalizable {
             }
         }
     }
-
-    // Ejercicio 3 -> Leer Objetos de archivo binario
+//    Ejercicio 3 -> Leer Objetos de archivo binario
 //    public static ArrayList<Plato> leerObjeto(String path) throws IOException {
 //        ArrayList<Plato> platos = new ArrayList<>();
 //        try (DataInputStream dis = new DataInputStream(new FileInputStream(path))) {
@@ -224,9 +223,10 @@ public class Plato implements Externalizable {
                 plato = (Plato)ois.readObject();
                 platos.add(plato);
             }
-
-            }
-        catch (EOFException e) {}
+        }
+        catch (EOFException e) {
+            System.out.println(e.getMessage());
+        }
         return platos;
     }
 }
