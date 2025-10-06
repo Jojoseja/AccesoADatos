@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Tema1Ejer5;
+package Tema1Ejer5.Pokemon;
 
+import Tema1Ejer5.Pokemon.Pokemon;
 import dao.pokemon.excepciones.DataAccessException;
 import dao.pokemon.excepciones.DataDestFullException;
 import dao.pokemon.excepciones.DataIntegrityException;
