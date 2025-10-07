@@ -92,7 +92,7 @@ public class Plato implements Externalizable {
     }
 
 
-//      Ejercicio 1
+//    Ejercicio 1
 //    public void escribirObjeto(String path) throws IOException {
 //        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(path, true))) {
 //            dos.writeUTF(this.getNombre());
@@ -103,7 +103,7 @@ public class Plato implements Externalizable {
 //        }
 //    }
 
-    //Ejercicio 3 - ej1Modificado
+//  Ejercicio 3 - ej1Modificado
     public void escribirObjeto(String path) throws IOException {
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(path, true))) {
             dos.writeUTF(this.getNombre());
@@ -116,7 +116,7 @@ public class Plato implements Externalizable {
         }
     }
 
-    // Ejercicio 2 -> Escribir Lista de Objetos
+//    Ejercicio 2 -> Escribir Lista de Objetos
 //    public static void escribirObjeto(ArrayList<Plato> platos, String path) throws IOException {
 //        try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(path, true))) {
 //            for (Plato plato : platos) {
@@ -129,7 +129,7 @@ public class Plato implements Externalizable {
 //        }
 //    }
 
-    //Ejercicio 3 -> Ej2 Modificado
+//  Ejercicio 3 -> Ej2 Modificado
     public static void escribirObjeto(ArrayList<Plato> platos, String path) throws IOException {
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(path, true))) {
             for (Plato plato : platos) {
