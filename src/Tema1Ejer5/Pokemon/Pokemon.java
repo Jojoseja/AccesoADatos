@@ -11,6 +11,7 @@ package Tema1Ejer5.Pokemon;/*
 import Tema1Ejer5.Pokemon.excepciones.InvalidNumber;
 
 import java.io.*;
+import java.util.Objects;
 
 public class Pokemon implements Externalizable {
     @Serial
@@ -142,5 +143,22 @@ public class Pokemon implements Externalizable {
         this.specialAttack = in.readInt();
         this.specialDefense = in.readInt();
         this.speed = in.readInt();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Pokemon pokemon = (Pokemon) o;
+        return level == pokemon.level && life == pokemon.life && attack == pokemon.attack && defense == pokemon.defense && specialAttack == pokemon.specialAttack && specialDefense == pokemon.specialDefense && speed == pokemon.speed && Objects.equals(name, pokemon.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, level, life, attack, defense, specialAttack, specialDefense, speed);
     }
 }

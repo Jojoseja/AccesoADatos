@@ -9,6 +9,7 @@ import java.io.*;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public class PokemonMain {
 
-    public static void main(String[] args) throws NoSuchFileException, dao.pokemon.excepciones.DataDestFullException, dao.pokemon.excepciones.DataAccessException, dao.pokemon.excepciones.DuplicateKeyException, dao.pokemon.excepciones.IncompatibleVersionException {
+    public static void main(String[] args) throws NoSuchFileException, dao.pokemon.excepciones.DataDestFullException, dao.pokemon.excepciones.DataAccessException, dao.pokemon.excepciones.DuplicateKeyException, dao.pokemon.excepciones.IncompatibleVersionException, dao.pokemon.excepciones.DataIntegrityException {
         //Ruta Archivo DAT
         Path rutaDAT = Path.of("src", "Tema1Ejer5", "Pokemon", "archivo.dat");
         File archivoDAT = new File(rutaDAT.toString());
@@ -26,19 +27,17 @@ public class PokemonMain {
         File archivoCSV = new File(rutaCSV.toString());
 
         //El número es el máximo en el almacen
-        PokemonDAOFile pdaof = new PokemonDAOFile(archivoDAT, 10);
+        PokemonDAOFile pdaof = new PokemonDAOFile(archivoDAT, 20);
         ArrayList<Pokemon> pokeList = (ArrayList<Pokemon>) pdaof.getPokemonsCSV(archivoCSV.toString());
 
 
-//        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivoDAT))) {
-//            oos.writeObject(pokeList);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
+
+//        for (Pokemon p : pokeList) {
+//            pdaof.aniadir(p);
 //        }
-        for (Pokemon p : pdaof.leerPokemons()) {
-            System.out.println(p.getName());
-        }
 
+        List<Pokemon> pokeDAT = pdaof.leerPokemons();
 
+        pdaof.imprimirPokemon("saur");
     }
 }

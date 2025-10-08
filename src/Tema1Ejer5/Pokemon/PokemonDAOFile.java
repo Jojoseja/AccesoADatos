@@ -29,7 +29,7 @@ public class PokemonDAOFile implements PokemonDAO {
     private int almacen;
 
     //Indica el número de pokemons actuales en el archivo
-    private int curr_pokemon;
+    //private int curr_pokemon;
 
     public void setFile(File file) throws FileNotFoundException {
         this.file = file;
@@ -47,13 +47,13 @@ public class PokemonDAOFile implements PokemonDAO {
         this.almacen = almacen;
     }
 
-    public int getCurr_pokemon() {
-        return curr_pokemon;
-    }
+    //public int getCurr_pokemon() {
+        //return curr_pokemon;
+    //}
 
-    public void setCurr_pokemon(int curr_pokemon) {
-        this.curr_pokemon = curr_pokemon;
-    }
+//    public void setCurr_pokemon(int curr_pokemon) {
+//        this.curr_pokemon = curr_pokemon;
+//    }
 
     public PokemonDAOFile(File file, int almacen) {
         try {
@@ -68,7 +68,7 @@ public class PokemonDAOFile implements PokemonDAO {
     @Override
     public boolean estaVacio() throws DataAccessException {
         try {
-            return curr_pokemon == 0;
+            return file.length() == 0;
         } catch (Exception e) {
             throw new DataAccessException();
         }
@@ -77,7 +77,7 @@ public class PokemonDAOFile implements PokemonDAO {
     @Override
     public boolean estaLLeno() throws DataAccessException {
         try {
-            return curr_pokemon == almacen;
+            return false;//curr_pokemon == almacen;
         } catch (Exception e) {
             throw new DataAccessException();
         }
@@ -85,27 +85,39 @@ public class PokemonDAOFile implements PokemonDAO {
 
     @Override
     public void aniadir(Pokemon pokemon) throws DataAccessException, DataDestFullException, DuplicateKeyException {
-        if (curr_pokemon <= almacen) {
+        if (true){//curr_pokemon <= almacen) {
             ArrayList<Pokemon> lista = new ArrayList<>();
-            if (!this.estaVacio()) {
+
+            if (true) {
                 try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.getFile()))) {
-                    while (ois.available() > 0) {
+                    while (true) {
                         Pokemon p = (Pokemon) ois.readObject();
                         lista.add(p);
                     }
-                    if (lista.contains(pokemon)) {
-                        throw new DuplicateKeyException();
-                    }
-                } catch (IOException e){
+//                    if (lista.contains(pokemon)) {
+//                        throw new DuplicateKeyException();
+//                    }
+                } catch (EOFException e) {
+                }
+                catch (IOException e){
                     throw new DataAccessException();
                 } catch (ClassNotFoundException e) {
                     e.getMessage();
-                }
-            }
+                } finally {
+                    if (!lista.contains(pokemon)) {
+                        lista.add(pokemon);
+                    } else {
+                        System.out.println("Ya está incluido el pokemon: " + pokemon.name);
+                    }
 
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-                out.writeObject(pokemon);
-                curr_pokemon += 1;
+                }
+            } else {
+                //lista.add(pokemon);
+            }
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.getFile()))) {
+                for (Pokemon p : lista){
+                    out.writeObject(p);
+                }
             } catch (IOException e){
                 throw new DataAccessException();
             }
@@ -116,7 +128,7 @@ public class PokemonDAOFile implements PokemonDAO {
     }
 
     public void aniadir(List<Pokemon> pokelista) throws DataAccessException, DataDestFullException, DuplicateKeyException {
-        if (curr_pokemon <= almacen) {
+        if (true){//curr_pokemon <= almacen) {
             ArrayList<Pokemon> lista = new ArrayList<>();
             if (!this.estaVacio()) {
                 try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.getFile()))) {
@@ -151,32 +163,39 @@ public class PokemonDAOFile implements PokemonDAO {
     public boolean eliminar(Pokemon pokemon) throws DataAccessException, DataIntegrityException {
         boolean output = false;
         int contador = 0;
-        if (curr_pokemon == 0) {
+        if (!true){   //curr_pokemon == 0) {
             throw new DataIntegrityException();
         } else {
             ArrayList<Pokemon> pokemons = new ArrayList<>();
             try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-                while (in.available() > 0) {
+                while (true) {
                     pokemons.add((Pokemon) in.readObject());
                 }
-                try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-                    for (Pokemon p : pokemons) {
-                        if (p.equals(pokemon)) {
-                            output = true;
-                        }
-                        out.writeObject(p);
-                        contador++;
-                    }
-                }
-            catch (IOException e){
-                throw new DataAccessException();
             }
-
+            catch (EOFException e) {
+                //Vacio
+            }
+            catch (IOException | ClassNotFoundException e){
+                    throw new DataAccessException();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+                for (Pokemon p : pokemons) {
+                    if (p.equals(pokemon)) {
+                        output = true;
+                    } else {
+                        out.writeObject(p);
+                    }
+
+                    contador++;
+                }
+            } catch (IOException e){
+                throw new DataAccessException();
+            }
         }
-        curr_pokemon = contador;
+//        curr_pokemon = contador;
         return output;
     }
 
@@ -185,16 +204,19 @@ public class PokemonDAOFile implements PokemonDAO {
         ArrayList<Pokemon> pokemons = new ArrayList<>();
         int contador=0;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            pokemons.add((Pokemon) in.readObject());
-            contador++;
-        } catch (ClassNotFoundException e) {
+            while (true) {
+                pokemons.add((Pokemon) in.readObject());
+            }
+        } catch (EOFException e) {
+        }
+        catch (ClassNotFoundException e) {
             throw new IncompatibleVersionException();
         } catch (Exception e){
             //Debug
             System.out.println(e.getMessage());
             throw new DataAccessException();
         }
-        curr_pokemon = contador;
+//        curr_pokemon = contador;
         return pokemons;
     }
 
@@ -220,25 +242,29 @@ public class PokemonDAOFile implements PokemonDAO {
     public void actualizar(Pokemon p) throws DataAccessException, IncompatibleVersionException {
         ArrayList<Pokemon> pokemons = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            Pokemon temp = (Pokemon) in.readObject();
-
-            if (temp.equals(p)) {
-                pokemons.add(p);
-            } else {
-                pokemons.add(temp);
-            }
-
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-                for  (Pokemon p1 : pokemons) {
-                    out.writeObject(p1);
+            while (true){
+                Pokemon temp = (Pokemon) in.readObject();
+                if (temp.equals(p)) {
+                    pokemons.add(p);
+                } else {
+                    pokemons.add(temp);
                 }
-            } catch(IOException e){
-                throw new DataAccessException();
+
             }
-        } catch (IOException e) {
+        }
+        catch (EOFException e){
+        }
+        catch (IOException e) {
             throw new DataAccessException();
         } catch (ClassNotFoundException e){
             throw new IncompatibleVersionException();
+        }
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
+            for  (Pokemon p1 : pokemons) {
+                out.writeObject(p1);
+            }
+        } catch(IOException e){
+            throw new DataAccessException();
         }
     }
 
@@ -284,25 +310,27 @@ public class PokemonDAOFile implements PokemonDAO {
     public void imprimirPokemon(String nombre) {
         ArrayList<Pokemon> pokemons = new ArrayList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            while(in.available()>0) {
+            while(true) {
                 pokemons.add((Pokemon) in.readObject());
             }
+        } catch (EOFException e){
 
-            for(Pokemon p : pokemons) {
-                if (p.getName().toLowerCase().contains(nombre.toLowerCase())) {
-                    System.out.println("--- --- ---");
-                    System.out.println("Name: "+p.getName());
-                    System.out.println("level: "+p.getLevel());
-                    System.out.println("attack: "+p.getAttack());
-                    System.out.println("defense: "+p.getDefense());
-                    System.out.println("Special Attack: "+p.getSpecialAttack());
-                    System.out.println("special Defense: "+p.getSpecialDefense());
-                    System.out.println("speed: "+p.getSpeed());
-                    System.out.println("--- --- ---");
-                }
-            }
-        } catch (ClassNotFoundException | IOException e){
+        }
+        catch (ClassNotFoundException | IOException e){
             System.out.println(e.getMessage());
+        }
+        for(Pokemon p : pokemons) {
+            if (p.getName().toLowerCase().contains(nombre.toLowerCase())) {
+                System.out.println("--- --- ---");
+                System.out.println("Name: "+p.getName());
+                System.out.println("level: "+p.getLevel());
+                System.out.println("attack: "+p.getAttack());
+                System.out.println("defense: "+p.getDefense());
+                System.out.println("Special Attack: "+p.getSpecialAttack());
+                System.out.println("special Defense: "+p.getSpecialDefense());
+                System.out.println("speed: "+p.getSpeed());
+                System.out.println("--- --- ---");
+            }
         }
     }
 
@@ -323,6 +351,18 @@ public class PokemonDAOFile implements PokemonDAO {
                 temp.setSpecialDefense(Integer.parseInt(parte[6]));
                 temp.setSpeed(Integer.parseInt(parte[7]));
                 pokemons.add(temp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return pokemons;
+    }
+
+    public List<Pokemon> datToArray() {
+        ArrayList<Pokemon> pokemons = new ArrayList<>();
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+            while (in.available()>0) {
+                pokemons.add((Pokemon) in.readObject());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
