@@ -1,3 +1,6 @@
+name,gender,birth_year,height,mass,hair_color,skin_color,eye_color,planet,species
+"Luke Skywalker",male,19BBY,172,77,blond,fair,blue,Tatooine,Human
+"Darth Vader",male,41.9BBY,202,136,none,white,yellow,Tatooine,Human
 "Leia Organa",female,19BBY,150,49,brown,light,brown,Alderaan,Human
 "Owen Lars",male,52BBY,178,120,"brown, grey",light,blue,Tatooine,Human
 "Beru Whitesun lars",female,47BBY,165,75,brown,light,blue,Tatooine,Human
@@ -45,10 +48,10 @@ Chewbacca,male,200BBY,228,112,brown,unknown,blue,Kashyyyk,Wookie
 Tarfful,male,unknown,234,136,brown,brown,blue,Kashyyyk,Wookie
 Greedo,male,44BBY,173,74,n/a,green,black,Rodia,Rodian
 "Jabba Desilijic Tiure",hermaphrodite,600BBY,175,1,n/a,"green-tan, brown",orange,"Nal Hutta",Hutt
-Yoda,male,896BBY,66,17,white,green,brown,unknown,null
-Grogu,Male,41BBY,66,15,White,Green,Black,unknown,null
+Yoda,male,896BBY,66,17,white,green,brown,unknown,"Yoda's species"
+Grogu,Male,41BBY,66,15,White,Green,Black,unknown,"Yoda's species"
 Bossk,male,53BBY,190,113,none,green,red,Trandosha,Trandoshan
-Ackbar,male,41BBY,180,83,none,"brown mottle",orange,"Mon Cala",null
+Ackbar,male,41BBY,180,83,none,"brown mottle",orange,"Mon Cala","Mon Calamari"
 "Wicket Systri Warrick",male,8BBY,88,20,brown,brown,brown,Endor,Ewok
 "Nien Nunb",male,unknown,160,68,none,grey,black,Sullust,Sullustan
 "Nute Gunray",male,unknown,191,90,none,"mottled green",red,"Cato Neimoidia",Neimodian
@@ -69,7 +72,7 @@ Ki-Adi-Mundi,male,92BBY,198,82,white,pale,yellow,Cerea,Cerean
 "Adi Gallia",female,unknown,184,50,none,dark,blue,Coruscant,Tholothian
 "Saesee Tiin",male,unknown,188,0,none,pale,orange,Iktotch,Iktotchi
 "Yarael Poof",male,unknown,264,0,none,white,yellow,Quermia,Quermian
-"Plo Koon",male,22BBY,188,80,none,orange,black,Dorin,null
+"Plo Koon",male,22BBY,188,80,none,orange,black,Dorin,"Kel Dor"
 "Mas Amedda",male,unknown,196,0,none,blue,blue,Champala,Chagrian
 "Poggle the Lesser",male,unknown,183,80,none,green,yellow,Geonosis,Geonosian
 "Luminara Unduli",female,58BBY,170,56.2,black,yellow,blue,Mirial,Mirialan

@@ -1,8 +1,8 @@
 package Tema1Ejer5.StarWars;
 
-import java.io.Externalizable;
+import java.text.DecimalFormat;
 
-public class Character{
+public class Characters {
     //Atributos
     private String name; //Nombre del Personaje
     private String gender;
@@ -15,7 +15,20 @@ public class Character{
     private String planet;
     private String species;
 
-    public Character() {
+    public Characters() {
+    }
+
+    public Characters(String name, String gender, String birth_year, double height, double mass, String hair_color, String skin_color, String eye_color, String planet, String species) {
+        this.name = name;
+        this.gender = gender;
+        this.birth_year = birth_year;
+        this.height = height;
+        this.mass = mass;
+        this.hair_color = hair_color;
+        this.skin_color = skin_color;
+        this.eye_color = eye_color;
+        this.planet = planet;
+        this.species = species;
     }
 
     public String getName() {
@@ -100,30 +113,38 @@ public class Character{
 
     @Override
     public String toString() {
-        return "Character{" +
-                "name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birth_year='" + birth_year + '\'' +
-                ", height=" + height +
-                ", mass=" + mass +
-                ", hair_color='" + hair_color + '\'' +
-                ", skin_color='" + skin_color + '\'' +
-                ", eye_color='" + eye_color + '\'' +
-                ", planet='" + planet + '\'' +
-                ", species='" + species + '\'' +
-                '}';
+        //Formato para eliminar los .0 pero mantener los decimales de aquellos que no sean .0
+        DecimalFormat df = new DecimalFormat("#.##");
+        String heightText = df.format(this.getHeight());
+        String massText = df.format(this.getMass());
+
+        return "Name: " + name + "\n" +
+                "Gender: " + gender + "\n" +
+                "Birth Year: " + birth_year + "\n" +
+                "Height: "+ heightText + "\n" +
+                "Mass: " + massText + "\n" +
+                "Hair Color: " + hair_color + "\n" +
+                "Skin Color: " + skin_color + "\n" +
+                "Eye color: " + eye_color + "\n" +
+                "Planet: " + planet + "\n" +
+                "Species: " + species;
     }
 
 
     //Metodo que devuelve una String del personaje en formato csv
     public String toCSV(){
-        return name+","+gender+","+birth_year+","+height+","+mass+","+hair_color+","+skin_color+","+eye_color+","+planet+","+species;
+        //Formato para eliminar los .0 pero mantener los decimales de aquellos que no sean .0
+        DecimalFormat df = new DecimalFormat("#.##");
+        String heightText = df.format(this.getHeight());
+        String massText = df.format(this.getMass());
+
+        return name+","+gender+","+birth_year+","+heightText+","+massText+","+hair_color+","+skin_color+","+eye_color+","+planet+","+species;
     }
 
 
     //Sobreescritura del metodo equals para que dos personajes sean identicos si tienen el mismo nombre
     @Override
     public boolean equals(Object obj) {
-        return this.name.equals(((Character)obj).name);
+        return this.name.equals(((Characters)obj).name);
     }
 }
