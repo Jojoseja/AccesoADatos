@@ -15,7 +15,7 @@ public class CharactersMain {
         Characters rey = new Characters("Rey Skywalker", "female", "15ABY", 170, 54,
                 "Brown", "Light", "Hazel","Hyperkarn", "Human");
 
-        cdaof.findCSV("Skywalker");
+        cdaof.leerCSV();
 
 
     }

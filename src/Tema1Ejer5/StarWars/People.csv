@@ -1,3 +1,6 @@
+name,gender,birth_year,height,mass,hair_color,skin_color,eye_color,planet,species
+"Luke Skywalker",male,19BBY,172,77,blond,fair,blue,Tatooine,Human
+"Darth Vader",male,41.9BBY,202,136,none,white,yellow,Tatooine,Human
 "Leia Organa",female,19BBY,150,49,brown,light,brown,Alderaan,Human
 "Owen Lars",male,52BBY,178,120,"brown, grey",light,blue,Tatooine,Human
 "Beru Whitesun lars",female,47BBY,165,75,brown,light,blue,Tatooine,Human

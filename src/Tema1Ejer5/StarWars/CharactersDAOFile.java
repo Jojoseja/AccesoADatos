@@ -85,6 +85,9 @@ public class CharactersDAOFile implements CharactersDAO{
     //Metodo para escribir Listas en CSV
     private void writeCharacters(List<Characters> chList){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            String header ="name,gender,birth_year,height,mass,hair_color,skin_color,eye_color,planet,species";
+            bw.write(header);
+            bw.newLine();
             for (Characters characters : chList) {
                 bw.write(characters.toCSV());
                 bw.newLine();
@@ -99,6 +102,7 @@ public class CharactersDAOFile implements CharactersDAO{
         return file.length()==0;
     }
 
+    //Create
     @Override
     public void addCSV(Characters characters) throws DuplicateCharacter {
         List<Characters> chList = getCharacters();
@@ -111,6 +115,7 @@ public class CharactersDAOFile implements CharactersDAO{
 
     }
 
+    //Update
     @Override
     public void updateCSV(Characters characters) throws CharacterNotFound {
         List<Characters> chList = getCharacters();
@@ -128,6 +133,7 @@ public class CharactersDAOFile implements CharactersDAO{
         }
     }
 
+    //Read
     @Override
     public void leerCSV() {
         if (this.estaVacio()) {
@@ -144,6 +150,7 @@ public class CharactersDAOFile implements CharactersDAO{
 
     }
 
+    //Delete
     @Override
     public boolean deleteCSV(Characters characters) throws CharacterNotFound {
         if (this.estaVacio()) {
@@ -161,8 +168,7 @@ public class CharactersDAOFile implements CharactersDAO{
         return false;
     }
 
-
-
+    //Find
     @Override
     public void findCSV(String text) throws CharacterNotFound {
         List<Characters> matches = new ArrayList<>();
